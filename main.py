@@ -71,7 +71,8 @@ def bot_choice():
 
 
 def draw_singleplayer():
-    WIN.fill(BLACK)
+    WIN.fill(BLUE)
+    
 
 
 def win_check(p1, p2):
