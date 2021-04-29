@@ -1,5 +1,6 @@
 import pygame
 import os
+import random
 
 pygame.font.init()
 
@@ -14,6 +15,10 @@ RED = (255, 0, 0)
 BLUE = (0, 32, 255)
 TITLE_FONT = pygame.font.SysFont('calibri', 70)
 CHOICE_FONT = pygame.font.SysFont('ariel', 70)
+
+ROCK = 1
+PAPER = 2
+SCISSORS = 3
 
 def show_front():
     WIN.fill(WHITE)
@@ -55,6 +60,43 @@ def front_click(pos):
     else:
         return 0
 
+def bot_choice():
+    num = random.randint(1,3)
+    if num == ROCK:
+        return "rock"
+    elif num == PAPER:
+        return "paper"
+    else:
+        return "scissors"
+
+
+def draw_singleplayer():
+    WIN.fill(BLACK)
+
+
+def win_check(p1, p2):
+    if (p1 == "rock"):
+        if (p2 == "rock"):
+            return 0
+        elif (p2 == "paper"):
+            return 2
+        else:
+            return 1
+    elif (p1 == "paper"):
+        if (p2 == "rock"):
+            return 1
+        elif (p2 == "paper"):
+            return 0
+        else:
+            return 2
+    else:
+        if (p2 == "rock"):
+            return 2
+        elif (p2 == "paper"):
+            return 1
+        else:
+            return 0
+
 
 
 def main():
@@ -63,6 +105,8 @@ def main():
     front_page = True
     wins = [0, 0]
     numofplayers = 0
+    p1_choice = "none"
+    p2_choice = "none"
 
     while front_page:
         clock.tick(FPS)
@@ -80,6 +124,7 @@ def main():
                     front_page = False
 
     if numofplayers == 1:
+        p2_choice = bot_choice()
         while run:
             for event in pygame.event.get():
                if event.type == pygame.QUIT:
@@ -87,7 +132,7 @@ def main():
                   pygame.quit()
 
             clock.tick(FPS)
-            WIN.fill(WHITE)
+            draw_singleplayer()
             pygame.display.update()
     else:
         while run:
