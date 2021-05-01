@@ -31,7 +31,11 @@ MULTI_OCEAN = pygame.transform.scale(pygame.image.load(
     os.path.join('Assets', 'Multi.png')), (WIDTH, HEIGHT))
 
 ROCK_PNG = pygame.transform.scale(pygame.image.load(
-    os.path.join('Assets', 'rock.png')), (WIDTH//5, WIDTH//5))
+    os.path.join('Assets', 'rock.png')), (WIDTH//3, WIDTH//3))
+PAPER_PNG = pygame.transform.scale(pygame.image.load(
+    os.path.join('Assets', 'paper.png')), (WIDTH//3, WIDTH//3))
+SCISSORS_PNG = pygame.transform.scale(pygame.image.load(
+    os.path.join('Assets', 'scissors.png')), (WIDTH//3, WIDTH//3))
 
 ROCK = 1
 PAPER = 2
@@ -158,16 +162,28 @@ def win_check(p1, p2):
             return 0
 
 def draw_p1_choice(p1_choice):
+    choice_png = ROCK_PNG
+    if (p1_choice == "paper"):
+        choice_png = PAPER_PNG
+    elif (p1_choice == "scissors"):
+        choice_png = SCISSORS_PNG
+
     text = "Player One Chose:"
     draw_text = SINGLE_FONT.render(text, 1, RED)
     WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2, 150))
-    WIN.blit(ROCK_PNG, (WIDTH//2 - ROCK_PNG.get_width()//2, HEIGHT//2))
+    WIN.blit(choice_png, (WIDTH//2 - choice_png.get_width()//2, HEIGHT//2 - choice_png.get_height()//2))
 
 def draw_p2_choice(p2_choice):
+    choice_png = ROCK_PNG
+    if (p2_choice == "paper"):
+        choice_png = PAPER_PNG
+    elif (p2_choice == "scissors"):
+        choice_png = SCISSORS_PNG
+
     text = "Player Two Chose:"
     draw_text = SINGLE_FONT.render(text, 1, BLUE)
     WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2, 150))
-    WIN.blit(ROCK_PNG, (WIDTH//2 - ROCK_PNG.get_width()//2, HEIGHT//2))
+    WIN.blit(choice_png, (WIDTH//2 - choice_png.get_width()//2, HEIGHT//2 - choice_png.get_height()//2))
 
 def draw_winner_text(winner):
     text = "Tie"
@@ -175,7 +191,7 @@ def draw_winner_text(winner):
         text = "P1 Wins"
     elif winner == 2:
         text = "P2 Wins"
-    draw_text = TITLE_FONT.render(text, 1, RED)
+    draw_text = SINGLE_FONT.render(text, 1, RED)
     WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2, HEIGHT//2 - draw_text.get_height()//2))
 
 def cont_click(pos):
