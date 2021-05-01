@@ -41,6 +41,7 @@ ROCK = 1
 PAPER = 2
 SCISSORS = 3
 
+
 def show_front():
     WIN.blit(OCEAN, (0,0))
     title_text = "Rock Paper Scissors!"
@@ -65,8 +66,6 @@ def show_front():
     WIN.blit(draw_text3, ((7 * WIDTH//10) - draw_text3.get_width()//2,
     (2 * HEIGHT//3) - draw_text3.get_height()//2))
 
-
-     
     pygame.display.update()
 
 
@@ -80,6 +79,7 @@ def front_click(pos):
             return 0
     else:
         return 0
+
 
 def bot_choice():
     num = random.randint(1,3)
@@ -125,6 +125,7 @@ def draw_singleplayer(wins):
     WIN.blit(draw_wins1, (80, HEIGHT - 150))
     WIN.blit(draw_wins2, (WIDTH - 80 - draw_wins2.get_width(), HEIGHT - 150))
 
+
 def single_key(key_pressed):
     if key_pressed[pygame.K_z]:
         return "rock"
@@ -134,8 +135,6 @@ def single_key(key_pressed):
         return "scissors"
     else:
         return "none"
-
-    
 
 
 def win_check(p1, p2):
@@ -161,6 +160,7 @@ def win_check(p1, p2):
         else:
             return 0
 
+
 def draw_p1_choice(p1_choice):
     choice_png = ROCK_PNG
     if (p1_choice == "paper"):
@@ -172,6 +172,7 @@ def draw_p1_choice(p1_choice):
     draw_text = SINGLE_FONT.render(text, 1, RED)
     WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2, 150))
     WIN.blit(choice_png, (WIDTH//2 - choice_png.get_width()//2, HEIGHT//2 - choice_png.get_height()//2))
+
 
 def draw_p2_choice(p2_choice):
     choice_png = ROCK_PNG
@@ -185,6 +186,7 @@ def draw_p2_choice(p2_choice):
     WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2, 150))
     WIN.blit(choice_png, (WIDTH//2 - choice_png.get_width()//2, HEIGHT//2 - choice_png.get_height()//2))
 
+
 def draw_winner_text(winner):
     text = "Tie"
     if winner == 1:
@@ -193,6 +195,7 @@ def draw_winner_text(winner):
         text = "P2 Wins"
     draw_text = SINGLE_FONT.render(text, 1, RED)
     WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2, HEIGHT//2 - draw_text.get_height()//2))
+
 
 def cont_click(pos):
     if ((pos[1] <= ((5 * HEIGHT//9) + 80 + WIDTH//5)) and (pos[1] >= (5 * HEIGHT//9) + 80)):
@@ -332,6 +335,7 @@ def draw_multiplayer(wins):
     WIN.blit(draw_wins1, (80, HEIGHT - 150))
     WIN.blit(draw_wins2, (WIDTH - 80 - draw_wins2.get_width(), HEIGHT - 150))
 
+
 def multi_key(key_pressed, p1_choice, p2_choice):
     if (key_pressed[pygame.K_COMMA] or key_pressed[pygame.K_PERIOD] or key_pressed[pygame.K_SLASH]):
         return 2
@@ -350,6 +354,7 @@ def second_key(key_pressed):
         return "scissors"
     else:
         return "none"
+
 
 
 def main():
@@ -439,7 +444,7 @@ def main():
             clock.tick(FPS)
             pygame.display.update()
 
-    
+
 
 if __name__ == '__main__':
     main()
