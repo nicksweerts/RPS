@@ -97,10 +97,10 @@ def draw_singleplayer(wins):
     draw_text3 = SINGLE_FONT.render(c2_text, 1, BLUE)
     draw_text4 = SINGLE_FONT.render(c3_text, 1, LIGHT_RED)
 
-    WIN.blit(draw_text1, (WIDTH//2 - draw_text1.get_width()//2, 90))
-    WIN.blit(draw_text2, (WIDTH//2 - draw_text2.get_width()//2, 180))
-    WIN.blit(draw_text3, (WIDTH//2 - draw_text3.get_width()//2, 270))
-    WIN.blit(draw_text4, (WIDTH//2 - draw_text4.get_width()//2, 360))
+    WIN.blit(draw_text1, (WIDTH//2 - draw_text1.get_width()//2, 180))
+    WIN.blit(draw_text2, (WIDTH//2 - draw_text2.get_width()//2, 270))
+    WIN.blit(draw_text3, (WIDTH//2 - draw_text3.get_width()//2, 360))
+    WIN.blit(draw_text4, (WIDTH//2 - draw_text4.get_width()//2, 450))
 
     wins_text1 = "Wins: " + str(wins[0])
     wins_text2 = "Wins: " + str(wins[1])
@@ -277,6 +277,34 @@ def draw_multiplayer(wins):
     top_text = "CHOOSE YOUR ATTACK"
     draw_text = CHOICE_FONT.render(top_text, 1, RED)
     WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2,0))
+
+    box_text = "Your Choices:"
+    c1_text = "z  = ROCK =  ,"
+    c2_text = "x  = PAPER =  ."
+    c3_text = "c = SCISSORS = /"
+    p1_text = "P1"
+    p2_text = "P2"
+
+    draw_text1 = SINGLE_FONT.render(box_text, 1, DARK_BLUE)
+    draw_text2 = SINGLE_FONT.render(c1_text, 1, GREY)
+    draw_text3 = SINGLE_FONT.render(c2_text, 1, BLUE)
+    draw_text4 = SINGLE_FONT.render(c3_text, 1, LIGHT_RED)
+    draw_text5 = SINGLE_FONT.render(p1_text, 1, RED)
+    draw_text6 = SINGLE_FONT.render(p2_text, 1, BLUE)
+
+    WIN.blit(draw_text1, (WIDTH//2 - draw_text1.get_width()//2, 90))
+    WIN.blit(draw_text2, (WIDTH//2 - draw_text2.get_width()//2, 270))
+    WIN.blit(draw_text3, (WIDTH//2 - draw_text3.get_width()//2, 360))
+    WIN.blit(draw_text4, (WIDTH//2 - draw_text4.get_width()//2, 450))
+    WIN.blit(draw_text5, (WIDTH//4 - draw_text5.get_width()//2, 180))
+    WIN.blit(draw_text6, ((3 * WIDTH//4) - draw_text6.get_width()//2, 180))
+
+    wins_text1 = "Wins: " + str(wins[0])
+    wins_text2 = "Wins: " + str(wins[1])
+    draw_wins1 = CHOICE_FONT.render(wins_text1, 1, BLACK)
+    draw_wins2 = CHOICE_FONT.render(wins_text2, 1, BLACK)
+    WIN.blit(draw_wins1, (80, HEIGHT - 150))
+    WIN.blit(draw_wins2, (WIDTH - 80 - draw_wins2.get_width(), HEIGHT - 150))
 
 def multi_key(key_pressed, p1_choice, p2_choice):
     if (key_pressed[pygame.K_COMMA] or key_pressed[pygame.K_PERIOD] or key_pressed[pygame.K_SLASH]):
