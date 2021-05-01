@@ -261,6 +261,36 @@ def choose_wins(wins, p1_choice, p2_choice):
     return draw_continue(wins)
 
 
+def draw_multiplayer(wins):
+    WIN.fill(WHITE)
+    rect1 = (50, 50, WIDTH - 100, HEIGHT - 100)
+    pygame.draw.rect(WIN, BLACK, rect1)
+
+    rect2 = (75, 75, WIDTH - 150, HEIGHT - 150)
+    pygame.draw.rect(WIN, WHITE, rect2)
+
+    top_text = "CHOOSE YOUR ATTACK"
+    draw_text = CHOICE_FONT.render(top_text, 1, RED)
+    WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2,0))
+
+def multi_key(key_pressed, p1_choice, p2_choice):
+    if (key_pressed[pygame.K_COMMA] or key_pressed[pygame.K_PERIOD] or key_pressed[pygame.K_SLASH]):
+        return 2
+    elif (key_pressed[pygame.K_z] or key_pressed[pygame.K_x] or key_pressed[pygame.K_c]):
+        return 1
+    else:
+        return 0
+
+
+def second_key(key_pressed):
+    if key_pressed[pygame.K_COMMA]:
+        return "rock"
+    elif key_pressed[pygame.K_PERIOD]:
+        return "paper"
+    elif key_pressed[pygame.K_SLASH]:
+        return "scissors"
+    else:
+        return "none"
 
 
 def main():
@@ -314,14 +344,34 @@ def main():
             clock.tick(FPS)
             pygame.display.update()
     elif numofplayers == 2:
+        will_continue = True
+        player_choice = 0
         while run:
+            draw_multiplayer(wins)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
                     pygame.quit()
+            
+            keys_pressed = pygame.key.get_pressed()
+            player_choice = multi_key(keys_pressed, p1_choice, p2_choice)
+
+            if (player_choice == 1 and p1_choice == "none"):
+                p1_choice = single_key(keys_pressed)
+            elif (player_choice == 2 and p2_choice == "none"):
+                p2_choice = second_key(keys_pressed)
+            
+            if (p1_choice != "none" and p2_choice != "none"):
+                will_continue = choose_wins(wins, p1_choice, p2_choice)
+                if will_continue:
+                    p1_choice = "none"
+                    p2_choice = "none"
+                    player_choice = 0
+                else:
+                    run = False
+                    break
         
             clock.tick(FPS)
-            WIN.fill(BLUE)
             pygame.display.update()
 
     
