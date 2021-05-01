@@ -107,7 +107,7 @@ def draw_singleplayer(wins):
     draw_wins1 = CHOICE_FONT.render(wins_text1, 1, BLACK)
     draw_wins2 = CHOICE_FONT.render(wins_text2, 1, BLACK)
     WIN.blit(draw_wins1, (80, HEIGHT - 150))
-    WIN.blit(draw_wins2, (WIDTH//2 + 40, HEIGHT - 150))
+    WIN.blit(draw_wins2, (WIDTH - 80 - draw_wins2.get_width(), HEIGHT - 150))
 
 def single_key(key_pressed):
     if key_pressed[pygame.K_z]:
@@ -221,7 +221,12 @@ def draw_continue(wins):
                         else:
                             return False
 
-
+        wins_text1 = "Wins: " + str(wins[0])
+        wins_text2 = "Wins: " + str(wins[1])
+        draw_wins1 = WIN_SCREEN_FONT.render(wins_text1, 1, BLACK)
+        draw_wins2 = WIN_SCREEN_FONT.render(wins_text2, 1, BLACK)
+        WIN.blit(draw_wins1, (80, 75))
+        WIN.blit(draw_wins2, (WIDTH - 80 - draw_wins2.get_width(), 75))
 
         pygame.display.update()
 
