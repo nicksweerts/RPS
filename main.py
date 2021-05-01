@@ -386,6 +386,9 @@ def main():
                if event.type == pygame.QUIT:
                   run = False
                   pygame.quit()
+            
+            if (not run):
+                break
 
             keys_pressed = pygame.key.get_pressed()
             p1_choice = single_key(keys_pressed)
@@ -412,6 +415,9 @@ def main():
                     run = False
                     pygame.quit()
             
+            if (not run):
+                break
+        
             keys_pressed = pygame.key.get_pressed()
             player_choice = multi_key(keys_pressed, p1_choice, p2_choice)
 
