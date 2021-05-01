@@ -21,14 +21,26 @@ CHOICE_FONT = pygame.font.SysFont('ariel', 70)
 SINGLE_FONT = pygame.font.SysFont('ariel', 100)
 WIN_SCREEN_FONT = pygame.font.SysFont('calibri', 50)
 
+OCEAN = pygame.transform.scale(pygame.image.load(
+    os.path.join('Assets', 'ocean.png')), (WIDTH, HEIGHT))
+SINGLE_OCEAN = pygame.transform.scale(pygame.image.load(
+    os.path.join('Assets', 'Single.png')), (WIDTH, HEIGHT))
+CONTINUE_OCEAN = pygame.transform.scale(pygame.image.load(
+    os.path.join('Assets', 'Cnt.png')), (WIDTH, HEIGHT))
+MULTI_OCEAN = pygame.transform.scale(pygame.image.load(
+    os.path.join('Assets', 'Multi.png')), (WIDTH, HEIGHT))
+
+ROCK_PNG = pygame.transform.scale(pygame.image.load(
+    os.path.join('Assets', 'rock.png')), (WIDTH//5, WIDTH//5))
+
 ROCK = 1
 PAPER = 2
 SCISSORS = 3
 
 def show_front():
-    WIN.fill(WHITE)
+    WIN.blit(OCEAN, (0,0))
     title_text = "Rock Paper Scissors!"
-    draw_text1 = TITLE_FONT.render(title_text, 1, BLUE)
+    draw_text1 = TITLE_FONT.render(title_text, 1, DARK_BLUE)
     WIN.blit(draw_text1, (WIDTH//2 - draw_text1.get_width()//2,
     HEIGHT//3 - draw_text1.get_height()//2))
 
@@ -76,7 +88,7 @@ def bot_choice():
 
 
 def draw_singleplayer(wins):
-    WIN.fill(WHITE)
+    WIN.blit(SINGLE_OCEAN, (0,0))
     rect1 = (50, 50, WIDTH - 100, HEIGHT - 100)
     pygame.draw.rect(WIN, BLACK, rect1)
 
@@ -146,18 +158,16 @@ def win_check(p1, p2):
             return 0
 
 def draw_p1_choice(p1_choice):
-    text = "Player One chose:"
-    draw_text = WIN_SCREEN_FONT.render(text, 1, RED)
-    draw_text1 = WIN_SCREEN_FONT.render(p1_choice, 1, RED)
-    WIN.blit(draw_text, (WIDTH//3 - draw_text.get_width()//2, 150))
-    WIN.blit(draw_text1, (WIDTH//3 - draw_text1.get_width()//2, HEIGHT//2))
+    text = "Player One Chose:"
+    draw_text = SINGLE_FONT.render(text, 1, RED)
+    WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2, 150))
+    WIN.blit(ROCK_PNG, (WIDTH//2 - ROCK_PNG.get_width()//2, HEIGHT//2))
 
 def draw_p2_choice(p2_choice):
-    text = "Player Two chose:"
-    draw_text = WIN_SCREEN_FONT.render(text, 1, BLUE)
-    draw_text1 = WIN_SCREEN_FONT.render(p2_choice, 1, BLUE)
-    WIN.blit(draw_text, ((2 * WIDTH//3) - draw_text.get_width()//2, 150))
-    WIN.blit(draw_text1, ((2 * WIDTH//3) - draw_text1.get_width()//2, HEIGHT//2))
+    text = "Player Two Chose:"
+    draw_text = SINGLE_FONT.render(text, 1, BLUE)
+    WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()//2, 150))
+    WIN.blit(ROCK_PNG, (WIDTH//2 - ROCK_PNG.get_width()//2, HEIGHT//2))
 
 def draw_winner_text(winner):
     text = "Tie"
@@ -183,7 +193,7 @@ def cont_click(pos):
 def draw_continue(wins):
     show = 0
     while show == 0:
-        WIN.fill(WHITE)
+        WIN.blit(CONTINUE_OCEAN, (0,0))
         rect1 = (50, 50, WIDTH - 100, HEIGHT - 100)
         pygame.draw.rect(WIN, BLACK, rect1)
 
@@ -232,7 +242,7 @@ def draw_continue(wins):
 
 
 def screen_init():
-    WIN.fill(WHITE)
+    WIN.blit(SINGLE_OCEAN, (0,0))
     rect1 = (50, 50, WIDTH - 100, HEIGHT - 100)
     pygame.draw.rect(WIN, BLACK, rect1)
 
@@ -267,7 +277,7 @@ def choose_wins(wins, p1_choice, p2_choice):
 
 
 def draw_multiplayer(wins):
-    WIN.fill(WHITE)
+    WIN.blit(MULTI_OCEAN, (0,0))
     rect1 = (50, 50, WIDTH - 100, HEIGHT - 100)
     pygame.draw.rect(WIN, BLACK, rect1)
 
